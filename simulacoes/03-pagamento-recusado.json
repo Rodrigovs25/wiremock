@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/pagamentos",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": {
+          "expression": "$.cartao_final",
+          "equalTo": "9999"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 402,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "jsonBody": {
+      "status": "NEGADO",
+      "mensagem": "Cartão recusado por falta de limite"
+    }
+  }
+}
