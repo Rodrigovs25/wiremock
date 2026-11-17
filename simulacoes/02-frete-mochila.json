@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/frete",
+    "queryParameters": {
+      "produto_id": {
+        "equalTo": "2"
+      },
+      "cep": {
+        "equalTo": "01001000"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "jsonBody": {
+      "valor": 25.0,
+      "prazo_dias": 3
+    }
+  }
+}

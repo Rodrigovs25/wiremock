@@ -1,7 +1,15 @@
 {
   "request": {
     "method": "GET",
-    "url": "/frete?cep=01001000"
+    "urlPath": "/frete",
+    "queryParameters": {
+      "produto_id": {
+        "equalTo": "1"
+      },
+      "cep": {
+        "equalTo": "01001000"
+      }
+    }
   },
   "response": {
     "status": 200,
@@ -9,7 +17,7 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "jsonBody": {
-      "valor": 15.00,
+      "valor": 15.0,
       "prazo_dias": 3
     }
   }
