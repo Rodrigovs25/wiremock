@@ -8,3 +8,4 @@ curl -i -X DELETE http://localhost:8080/__admin/requests
 python3 ecommerce.py
 pytest -v test_ecommerce.py
 curl -s http://localhost:8080/__admin/requests | python3 -m json.tool
+curl http://localhost:8080/__admin/mappings
