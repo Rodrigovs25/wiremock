@@ -13,7 +13,6 @@ class Produto:
 def dinheiro(valor):
     return f"R$ {valor:.2f}".replace(".", ",")
 
-# 1. Produtos que já existem na loja.
 def inicializar_produto():
     produtos = {
         "1": Produto(id=1, nome="Caderno", preco=25.90),
@@ -28,7 +27,6 @@ def inicializar_produto():
         raise SystemExit("Escolha 1 para Caderno ou 2 para Mochila.")
     return produtos[escolha]
 
-# 2. O carrinho calcula o subtotal.
 def calcular_subtotal(produto):
     quantidade = int(input("Quantidade [2]: ").strip() or "2")
     if quantidade <= 0:
@@ -41,7 +39,7 @@ def calcular_subtotal(produto):
     print(f"Subtotal: {dinheiro(subtotal)}")
     return subtotal
 
-# 3. GET: o WireMock informa o frete do produto escolhido.
+# WireMock informa o frete do produto escolhido.
 def consultar_frete(produto, subtotal):
     input("\nPressione Enter para consultar o frete do CEP 01001000...")
     url = f"{API_URL}/frete?produto_id={produto.id}&cep=01001000"
@@ -55,7 +53,7 @@ def consultar_frete(produto, subtotal):
     print(f"Total com frete: {dinheiro(total)}")
     return total
 
-# 4. POST: o WireMock aprova ou recusa o pagamento.
+# WireMock aprova ou recusa o pagamento.
 def realizar_pagamento(total):
     cartao = input("\nFinal do cartão: 1111 aprova / 9999 recusa [1111]: ").strip() or "1111"
     if cartao not in ("1111", "9999"):
