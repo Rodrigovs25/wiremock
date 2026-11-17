@@ -18,4 +18,4 @@ def test_pagamento_aprovado_no_wiremock():
 
 def test_pagamento_recusado_no_wiremock():
     status = realizar_pagamento(total=66.80, cartao="999")
-    assert status == "Cartão recusado por falta de limite" # NEGADO
+    assert status == "Cartão recusado: código de segurança incorreto" # NEGADO

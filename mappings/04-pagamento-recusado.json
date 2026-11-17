@@ -18,7 +18,7 @@
     },
     "jsonBody": {
       "status": "NEGADO",
-      "mensagem": "Cartão recusado por falta de limite"
+      "mensagem": "Cartão recusado: código de segurança incorreto"
     }
   }
 }
