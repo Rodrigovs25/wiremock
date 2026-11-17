@@ -17,8 +17,8 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "jsonBody": {
-      "valor": 25.0,
-      "prazo_dias": 3
+      "valor": 100.0,
+      "prazo_dias": 10
     }
   }
 }

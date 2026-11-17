@@ -4,4 +4,4 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
     volumes:
-      - ./simulacoes:/home/wiremock/mappings:ro
+      - ./mappings:/home/wiremock/mappings:ro

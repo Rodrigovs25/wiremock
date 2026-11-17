@@ -11,11 +11,11 @@
    docker compose restart wiremock
    ```
 
-3. Mostre as regras de frete de R$ 15,00 para Caderno e R$ 25,00 para Mochila.
+3. Mostre as regras de frete de R$ 15,00 para Caderno e R$ 25,00 para Geladeira.
 
    ```bash
    cat simulacoes/01-frete-caderno.json
-   cat simulacoes/02-frete-mochila.json
+   cat simulacoes/02-frete-geladeira.json
    ```
 
 4. Consulte o frete do Caderno.
@@ -24,7 +24,7 @@
    curl -i 'http://localhost:8080/frete?produto_id=1&cep=01001000'
    ```
 
-5. Consulte o frete da Mochila.
+5. Consulte o frete da MochGeladeiraila.
 
    ```bash
    curl -i 'http://localhost:8080/frete?produto_id=2&cep=01001000'
@@ -42,7 +42,7 @@
    python3 ecommerce.py
    ```
 
-8. Execute novamente, escolha o produto 2 e pressione Enter na quantidade, no frete e no cartão para comprar duas mochilas por R$ 204,80.
+8. Execute novamente, escolha o produto 2 e pressione Enter na quantidade, no frete e no cartão para comprar duas geladeiras por R$ 204,80.
 
    ```bash
    python3 ecommerce.py

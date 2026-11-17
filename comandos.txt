@@ -2,7 +2,7 @@ docker compose pull
 docker compose up -d
 docker compose restart wiremock
 cat simulacoes/01-frete-caderno.json
-cat simulacoes/02-frete-mochila.json
+cat simulacoes/02-frete-geladeira.json
 curl -i 'http://localhost:8080/frete?produto_id=1&cep=01001000'
 curl -i 'http://localhost:8080/frete?produto_id=2&cep=01001000'
 curl -i -X DELETE http://localhost:8080/__admin/requests
