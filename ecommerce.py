@@ -38,8 +38,8 @@ def consultar_frete(produto, subtotal):
     print(f"Total com frete: R$ {total:.2f}")
     return total
 
-def realizar_pagamento(total, cartao="1111"):
-    dados = json.dumps({"total": total, "cartao_final": cartao}).encode("utf-8")
+def realizar_pagamento(total, cartao="111"):
+    dados = json.dumps({"total": total, "codigo_seguranca": cartao}).encode("utf-8")
     
     requisicao = Request(
         API_URL + "/pagamentos",
@@ -68,10 +68,10 @@ if __name__ == "__main__":
     quantidade = int(input("Quantidade [2]: ").strip() or "2")
     subtotal = calcular_subtotal(produto, quantidade)
 
-    input("\nPressione Enter para consultar o frete do CEP 01001000...")
+    input("\nPressione Enter para consultar o frete do CEP 01001000: ")
     total = consultar_frete(produto, subtotal)
 
-    cartao = input("\nFinal do cartão: 1111 aprova / 9999 recusa [1111]: ").strip() or "1111"
+    cartao = input("\nCódigo de segurança: 111 aprova | 999 recusa ").strip() or "111"
     status = realizar_pagamento(total, cartao)
     if status != "APROVADO":
         exit(1)

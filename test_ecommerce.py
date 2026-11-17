@@ -13,9 +13,9 @@ def test_frete_geladeira_no_wiremock():
     assert total == 3699.98 # 3699.98
 
 def test_pagamento_aprovado_no_wiremock():
-    status = realizar_pagamento(total=66.80, cartao="1111")
+    status = realizar_pagamento(total=66.80, cartao="111")
     assert status == "APROVADO"
 
 def test_pagamento_recusado_no_wiremock():
-    status = realizar_pagamento(total=66.80, cartao="9999")
+    status = realizar_pagamento(total=66.80, cartao="999")
     assert status == "Cartão recusado por falta de limite" # NEGADO

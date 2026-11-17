@@ -5,8 +5,8 @@
     "bodyPatterns": [
       {
         "matchesJsonPath": {
-          "expression": "$.cartao_final",
-          "equalTo": "1111"
+          "expression": "$.codigo_seguranca",
+          "equalTo": "111"
         }
       }
     ]
