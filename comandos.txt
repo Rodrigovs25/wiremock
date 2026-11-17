@@ -8,4 +8,5 @@ curl -i 'http://localhost:8080/frete?produto_id=2&cep=01001000'
 curl -i 'http://localhost:8080/frete?produto_id=1&cep=99999999'
 curl -i -X DELETE http://localhost:8080/__admin/requests
 python3 ecommerce.py
+pytest -v test_ecommerce.py
 curl -s http://localhost:8080/__admin/requests | python3 -m json.tool
