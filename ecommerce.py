@@ -10,22 +10,15 @@ class Produto:
         self.nome = nome
         self.preco = preco
 
-def inicializar_produto():
+def inicializar_produto(escolha="1"):
     produtos = {
         "1": Produto(id=1, nome="Caderno", preco=25.90),
         "2": Produto(id=2, nome="Geladeira", preco=1799.99),
     }
-    print("Loja\n")
-    for produto in produtos.values():
-        print(f"{produto.id}. {produto.nome} — R$ {produto.preco:.2f}")
-
-    escolha = input("Escolha o produto: ").strip() or "1"
     return produtos[escolha]
 
-def calcular_subtotal(produto):
-    quantidade = int(input("Quantidade [2]: ").strip() or "2")
+def calcular_subtotal(produto, quantidade=2):
     subtotal = round(produto.preco * quantidade, 2)
-    
     print(f"Produto: {produto.nome} (id: {produto.id})")
     print(f"Preço unitário: R$ {produto.preco:.2f}")
     print(f"Quantidade: {quantidade}")
@@ -33,7 +26,6 @@ def calcular_subtotal(produto):
     return subtotal
 
 def consultar_frete(produto, subtotal):
-    input("\nPressione Enter para consultar o frete do CEP 01001000...")
     url = f"{API_URL}/frete?produto_id={produto.id}&cep=01001000"
     print(f"  GET {url}")
     
@@ -46,8 +38,7 @@ def consultar_frete(produto, subtotal):
     print(f"Total com frete: R$ {total:.2f}")
     return total
 
-def realizar_pagamento(total):
-    cartao = input("\nFinal do cartão: 1111 aprova / 9999 recusa [1111]: ").strip() or "1111"
+def realizar_pagamento(total, cartao="1111"):
     dados = json.dumps({"total": total, "cartao_final": cartao}).encode("utf-8")
     
     requisicao = Request(
@@ -63,13 +54,24 @@ def realizar_pagamento(total):
             pagamento = json.load(resposta)
         print(f"Pagamento: {pagamento['status']}")
         print(f"Compra finalizada. Total: R$ {total:.2f}")
+        return pagamento["status"]
     except HTTPError as erro:
         mensagem = json.load(erro)["mensagem"] if erro.code == 402 else "Erro na requisição."
         print(f"Compra não concluída: HTTP {erro.code} — {mensagem}")
-        exit(1)
+        return mensagem
 
 if __name__ == "__main__":
-    produto = inicializar_produto()
-    subtotal = calcular_subtotal(produto)
+    print("Loja\n1. Caderno — R$ 25.90\n2. Geladeira — R$ 1799.99")
+    escolha = input("Escolha o produto: ").strip() or "1"
+    produto = inicializar_produto(escolha)
+
+    quantidade = int(input("Quantidade [2]: ").strip() or "2")
+    subtotal = calcular_subtotal(produto, quantidade)
+
+    input("\nPressione Enter para consultar o frete do CEP 01001000...")
     total = consultar_frete(produto, subtotal)
-    realizar_pagamento(total)
+
+    cartao = input("\nFinal do cartão: 1111 aprova / 9999 recusa [1111]: ").strip() or "1111"
+    status = realizar_pagamento(total, cartao)
+    if status != "APROVADO":
+        exit(1)

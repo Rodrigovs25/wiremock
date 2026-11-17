@@ -11,11 +11,13 @@
    docker compose restart wiremock
    ```
 
-3. Mostre as regras de frete de R$ 15,00 para Caderno e R$ 25,00 para Geladeira.
+3. Mostre as regras de frete de R$ 15,00 para Caderno e R$ 100,00 para Geladeira, e as regras de pagamento aprovado e recusado.
 
    ```bash
-   cat simulacoes/01-frete-caderno.json
-   cat simulacoes/02-frete-geladeira.json
+   cat mappings/01-frete-caderno.json
+   cat mappings/02-frete-geladeira.json
+   cat mappings/03-pagamento-aprovado.json
+   cat mappings/04-pagamento-recusado.json
    ```
 
 4. Consulte o frete do Caderno.
@@ -24,7 +26,7 @@
    curl -i 'http://localhost:8080/frete?produto_id=1&cep=01001000'
    ```
 
-5. Consulte o frete da MochGeladeiraila.
+5. Consulte o frete da Geladeira.
 
    ```bash
    curl -i 'http://localhost:8080/frete?produto_id=2&cep=01001000'
@@ -42,7 +44,7 @@
    python3 ecommerce.py
    ```
 
-8. Execute novamente, escolha o produto 2 e pressione Enter na quantidade, no frete e no cartão para comprar duas geladeiras por R$ 204,80.
+8. Execute novamente, escolha o produto 2 e pressione Enter na quantidade, no frete e no cartão para comprar duas geladeiras por R$ 3.699,98.
 
    ```bash
    python3 ecommerce.py
@@ -54,7 +56,7 @@
    python3 ecommerce.py
    ```
 
-10. Confira no histórico os produtos enviados na consulta do frete e os totais 66.8 e 204.8 enviados ao pagamento.
+10. Confira no histórico os produtos enviados na consulta do frete e os totais 66.8 e 3699.98 enviados ao pagamento.
 
     ```bash
     curl -s http://localhost:8080/__admin/requests | python3 -m json.tool
